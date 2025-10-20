@@ -10,7 +10,7 @@ export default function Contact({ data, setData, isEditing }) {
       <h2>Personal Information</h2>
 
       {isEditing ? (
-        <form className="contact-form">
+        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
           <label>
             Name:
             <input
