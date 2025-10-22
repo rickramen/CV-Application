@@ -1,7 +1,28 @@
 export default function Experience({ data, setData, isEditing }) {
-  const handleChange = (e) => {
+  const handleChange = (index, e) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    const updated = data.map((exp, i) =>
+      i === index ? { ...exp, [name]: value } : exp
+    );
+    setData(updated);
+  };
+
+  const handleAdd = () => {
+    setData([
+      ...data,
+      {
+        companyName: "",
+        position: "",
+        jobTasks: "",
+        startDate: "",
+        endDate: "",
+      },
+    ]);
+  };
+
+  const handleRemove = (index) => {
+    const updated = data.filter((_, i) => i !== index);
+    setData(updated);
   };
 
   return (
@@ -9,69 +30,97 @@ export default function Experience({ data, setData, isEditing }) {
       <h2>Experience</h2>
 
       {isEditing ? (
-        <form className="experience-form" onSubmit={(e) => e.preventDefault()}>
-          <label>
-            Company Name:
-            <input
-              type="text"
-              name="companyName"
-              value={data.companyName}
-              onChange={handleChange}
-              placeholder="Enter company name"
-            />
-          </label>
+        <>
+          {data.map((exp, index) => (
+            <form
+              key={index}
+              className="experience-form"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <label>
+                Company Name:
+                <input
+                  type="text"
+                  name="companyName"
+                  value={exp.companyName}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Enter company name"
+                />
+              </label>
 
-          <label>
-            Position:
-            <input
-              type="text"
-              name="position"
-              value={data.position}
-              onChange={handleChange}
-              placeholder="Enter your job title"
-            />
-          </label>
+              <label>
+                Position:
+                <input
+                  type="text"
+                  name="position"
+                  value={exp.position}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Enter your job title"
+                />
+              </label>
 
-          <label>
-            Job Tasks:
-            <input
-              type="text"
-              name="jobTasks"
-              value={data.jobTasks}
-              onChange={handleChange}
-              placeholder="Describe your tasks"
-            />
-          </label>
+              <label>
+                Job Tasks:
+                <input
+                  type="text"
+                  name="jobTasks"
+                  value={exp.jobTasks}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Describe your tasks"
+                />
+              </label>
 
-          <label>
-            Start Date:
-            <input
-              type="text"
-              name="startDate"
-              value={data.startDate}
-              onChange={handleChange}
-              placeholder="e.g. June 2025"
-            />
-          </label>
+              <label>
+                Start Date:
+                <input
+                  type="month"
+                  name="startDate"
+                  value={exp.startDate}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </label>
 
-          <label>
-            End Date:
-            <input
-              type="text"
-              name="endDate"
-              value={data.endDate}
-              onChange={handleChange}
-              placeholder="e.g. August 2025"
-            />
-          </label>
-        </form>
+              <label>
+                End Date:
+                <input
+                  type="month"
+                  name="endDate"
+                  value={exp.endDate}
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </label>
+
+              <button type="button" onClick={() => handleRemove(index)}>
+                Remove
+              </button>
+            </form>
+          ))}
+
+          <button type="button" onClick={handleAdd}>
+            Add Experience
+          </button>
+        </>
       ) : (
         <div className="experience-preview">
-          <p><strong>Company:</strong> {data.companyName}</p>
-          <p><strong>Position:</strong> {data.position}</p>
-          <p><strong>Tasks:</strong> {data.jobTasks}</p>
-          <p><strong>Start:</strong> {data.startDate}</p>
-          <p><strong>End:</strong> {data.endDate}</p>
+          {data.map((exp, index) => (
+            <div key={index} className="experience-entry">
+              <p>
+                <strong>Company:</strong> {exp.companyName}
+              </p>
+              <p>
+                <strong>Position:</strong> {exp.position}
+              </p>
+              <p>
+                <strong>Tasks:</strong> {exp.jobTasks}
+              </p>
+              <p>
+                <strong>Start:</strong> {exp.startDate}
+              </p>
+              <p>
+                <strong>End:</strong> {exp.endDate}
+              </p>
+            </div>
+          ))}
         </div>
       )}
     </section>

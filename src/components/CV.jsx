@@ -6,25 +6,15 @@ import { exampleContact, exampleEducation, exampleExperience } from "../data/exa
 import "../styles/CV.css";
 
 export default function CV() {
-  const [isEditing, setIsEditing] = useState(true); // global toggle
+  const [isEditing, setIsEditing] = useState(true);
   const [contact, setContact] = useState({ 
     name: "", 
     email: "",
     phone: "" 
   });
-  const [education, setEducation] = useState({
-    school: "",
-    degree: "",
-    gradYear: "",
-  });
-  const [experience, setExperience] = useState({
-  companyName: "",
-  position: "",
-  jobTasks: "",
-  startDate: "",
-  endDate: "",
-});
-
+  const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
+ 
   const loadExample = () => {
     setContact(exampleContact);
     setEducation(exampleEducation);
@@ -32,12 +22,11 @@ export default function CV() {
   };
 
   const clearAll = () => {
-  setContact({ name: "", email: "", phone: "" });
-  setEducation({ school: "", degree: "", gradYear: "" });
-  setExperience({ companyName: "", position: "", jobTasks: "", startDate: "", endDate: "" });
-  setIsEditing(true);
+    setContact({ name: "", email: "", phone: "" });
+    setEducation([]);
+    setExperience([]);
+    setIsEditing(true);
 };
-
 
   return (
     <main className="cv-container">
