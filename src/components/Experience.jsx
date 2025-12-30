@@ -98,9 +98,9 @@ export default function Experience({ data, setData, isEditing }) {
           </button>
         </form>
       ) : (
-        <div className="section-preview">
+        <div className="preview-cv">
           {data.map((exp, index) => (
-            <div key={index} className="section-entry">
+            <div key={index} className="preview-container">
               <p><strong>Company:</strong> {exp.companyName}</p>
               <p><strong>Position:</strong> {exp.position}</p>
               <p><strong>Tasks:</strong> {exp.jobTasks}</p>

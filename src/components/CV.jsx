@@ -41,9 +41,6 @@ export default function CV() {
       <Education data={education} setData={setEducation} isEditing={isEditing} />
       <Experience data={experience} setData={setExperience} isEditing={isEditing} />
       
-      <div className="cv-controls">
-        <button onClick={() => setIsEditing(false)}>Submit</button>
-      </div>
     </main>
   );
 }

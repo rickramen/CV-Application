@@ -76,9 +76,9 @@ export default function Education({ data, setData, isEditing }) {
           </button>
         </form>
       ) : (
-        <div className="section-preview">
+        <div className="preview-cv">
           {data.map((edu, index) => (
-            <div key={index} className="section-entry">
+            <div key={index} className="preview-container">
               <p><strong>School:</strong> {edu.school}</p>
               <p><strong>Degree:</strong> {edu.degree}</p>
               <p><strong>Grad Year:</strong> {edu.gradYear}</p>

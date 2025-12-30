@@ -50,7 +50,7 @@
 }
 
 
-/* Container for each entry section */
+/* Container for each edit section */
 
 .section-entry {
   width: 100%;                
@@ -62,7 +62,6 @@
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-
 
 /* Labels styling */
 .section-entry label {
@@ -103,7 +102,10 @@
   color: white;
 }
 
+/* Preview styles (if i feel like doing it) */
 
+
+/* Responsive Design */
 @media (min-width: 768px) {
   .section-entry {
     max-width: 600px;

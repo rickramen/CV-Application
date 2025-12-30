@@ -47,8 +47,8 @@ export default function Contact({ data, setData, isEditing }) {
           </div>
         </form>
       ) : (
-        <div className="section-preview">
-          <div className="section-entry">
+        <div className="preview-cv">
+          <div className="preview-container">
             <p><strong>Name:</strong> {data.name}</p>
             <p><strong>Email:</strong> {data.email}</p>
             <p><strong>Phone:</strong> {data.phone}</p>
