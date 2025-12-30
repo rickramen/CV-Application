@@ -6,7 +6,7 @@ import { exampleContact, exampleEducation, exampleExperience } from "../data/exa
 import "../styles/CV.css";
 
 export default function CV() {
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(true); // useState tracker
   const [contact, setContact] = useState({ 
     name: "", 
     email: "",
@@ -32,14 +32,18 @@ export default function CV() {
     <main className="cv-container">
       <div className="cv-controls">
         <button onClick={() => setIsEditing(true)}>Edit</button>
-        <button onClick={() => setIsEditing(false)}>Submit</button>
         <button onClick={loadExample}>Load Example</button>
         <button onClick={clearAll}>Clear All</button>
+        <button onClick={() => setIsEditing(false)}>Submit</button>
       </div>
 
       <Contact data={contact} setData={setContact} isEditing={isEditing} />
       <Education data={education} setData={setEducation} isEditing={isEditing} />
       <Experience data={experience} setData={setExperience} isEditing={isEditing} />
+      
+      <div className="cv-controls">
+        <button onClick={() => setIsEditing(false)}>Submit</button>
+      </div>
     </main>
   );
 }

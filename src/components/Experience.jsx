@@ -26,17 +26,13 @@ export default function Experience({ data, setData, isEditing }) {
   };
 
   return (
-    <section className="experience-section">
+    <section className="section-main">
       <h2>Experience</h2>
 
       {isEditing ? (
-        <>
+        <form className="section-form" onSubmit={(e) => e.preventDefault()}>
           {data.map((exp, index) => (
-            <form
-              key={index}
-              className="experience-form"
-              onSubmit={(e) => e.preventDefault()}
-            >
+            <div key={index} className="section-entry">
               <label>
                 Company Name:
                 <input
@@ -60,13 +56,14 @@ export default function Experience({ data, setData, isEditing }) {
               </label>
 
               <label>
-                Job Tasks:
-                <input
+                Responsibilities:
+                <textarea
                   type="text"
                   name="jobTasks"
                   value={exp.jobTasks}
                   onChange={(e) => handleChange(index, e)}
-                  placeholder="Describe your tasks"
+                  placeholder="Describe your responsibilities"
+                  rows={4}
                 />
               </label>
 
@@ -90,35 +87,25 @@ export default function Experience({ data, setData, isEditing }) {
                 />
               </label>
 
-              <button type="button" onClick={() => handleRemove(index)}>
+              <button type="button" onClick={() => handleRemove(index)} className="remove-btn">
                 Remove
               </button>
-            </form>
+            </div>
           ))}
 
-          <button type="button" onClick={handleAdd}>
+          <button type="button" onClick={handleAdd}  className="add-btn">
             Add Experience
           </button>
-        </>
+        </form>
       ) : (
-        <div className="experience-preview">
+        <div className="section-preview">
           {data.map((exp, index) => (
-            <div key={index} className="experience-entry">
-              <p>
-                <strong>Company:</strong> {exp.companyName}
-              </p>
-              <p>
-                <strong>Position:</strong> {exp.position}
-              </p>
-              <p>
-                <strong>Tasks:</strong> {exp.jobTasks}
-              </p>
-              <p>
-                <strong>Start:</strong> {exp.startDate}
-              </p>
-              <p>
-                <strong>End:</strong> {exp.endDate}
-              </p>
+            <div key={index} className="section-entry">
+              <p><strong>Company:</strong> {exp.companyName}</p>
+              <p><strong>Position:</strong> {exp.position}</p>
+              <p><strong>Tasks:</strong> {exp.jobTasks}</p>
+              <p><strong>Start:</strong> {exp.startDate}</p>
+              <p><strong>End:</strong> {exp.endDate}</p>
             </div>
           ))}
         </div>

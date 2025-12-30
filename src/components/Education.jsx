@@ -1,14 +1,20 @@
 export default function Education({ data, setData, isEditing }) {
   const handleChange = (index, e) => {
     const { name, value } = e.target;
-    const updated = data.map((exp, i) =>
-      i === index ? { ...exp, [name]: value } : exp
+    const updated = data.map((edu, i) =>
+      i === index ? { ...edu, [name]: value } : edu
     );
     setData(updated);
   };
 
   const handleAdd = () => {
-    setData([...data, { school: "", degree: "", gradYear: "" }]);
+    setData([...data, 
+      { 
+        school: "", 
+        degree: "", 
+        gradYear: "" 
+      }
+    ]);
   };
 
   const handleRemove = (index) => {
@@ -17,20 +23,20 @@ export default function Education({ data, setData, isEditing }) {
   };
 
   return (
-    <section className="education-section">
+    <section className="section-main">
       <h2>Education</h2>
 
       {isEditing ? (
-        <form className="education-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="section-form" onSubmit={(e) => e.preventDefault()}>
           {data.map((edu, index) => (
-            <div key={index} className="education-entry">
+            <div key={index} className="section-entry">
               <label>
                 School:
                 <input
                   type="text"
                   name="school"
                   value={edu.school}
-                  onChange={(e) => handleChange(e, index)}
+                  onChange={(e) => handleChange(index, e)}
                   placeholder="Enter school or university"
                 />
               </label>
@@ -41,7 +47,7 @@ export default function Education({ data, setData, isEditing }) {
                   type="text"
                   name="degree"
                   value={edu.degree}
-                  onChange={(e) => handleChange(e, index)}
+                  onChange={(e) => handleChange(index, e)}
                   placeholder="Enter your degree"
                 />
               </label>
@@ -54,33 +60,25 @@ export default function Education({ data, setData, isEditing }) {
                   min="1900"
                   max="2099"
                   value={edu.gradYear}
-                  onChange={(e) => handleChange(e, index)}
+                  onChange={(e) => handleChange(index, e)}
                   placeholder="e.g. 2025"
                 />
               </label>
 
-              <button
-                type="button"
-                onClick={() => handleRemove(index)}
-                className="remove-btn"
-              >
+              <button type="button" onClick={() => handleRemove(index)} className="remove-btn">
                 Remove
               </button>
             </div>
           ))}
 
-          <button
-            type="button"
-            onClick={handleAdd}
-            className="add-btn"
-          >
+          <button type="button" onClick={handleAdd} className="add-btn"       >
             Add Education
           </button>
         </form>
       ) : (
-        <div className="education-preview">
+        <div className="section-preview">
           {data.map((edu, index) => (
-            <div key={index} className="education-entry">
+            <div key={index} className="section-entry">
               <p><strong>School:</strong> {edu.school}</p>
               <p><strong>Degree:</strong> {edu.degree}</p>
               <p><strong>Grad Year:</strong> {edu.gradYear}</p>
